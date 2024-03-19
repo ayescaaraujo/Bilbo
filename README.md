@@ -1,4 +1,5 @@
-package Bilbo_Baggins;
+package Bilbo;
+import robocode.*;
 
 
 import robocode.HitRobotEvent;
@@ -9,23 +10,19 @@ import static robocode.util.Utils.normalRelativeAngleDegrees;
 
 import java.awt.*;
 
-
 public class Bilbo extends Robot {
-	int count = 0; // Keeps track of how long we've
+     int count = 0; // Keeps track of how long we've
 	// been searching for our target
 	double gunTurnAmt; // How much to turn our gun when searching
 	String trackName; // Name of the robot we're currently tracking
 
-	/**
-	 * run:  Tracker's main run function
-	 */
 	public void run() {
 		// Set colors
-		setBodyColor(new Color(128, 128, 50));
-		setGunColor(new Color(50, 50, 20));
-		setRadarColor(new Color(200, 200, 70));
+		setBodyColor(Color.red);
+		setGunColor(Color.red);
+		setRadarColor(Color.red);
 		setScanColor(Color.white);
-		setBulletColor(Color.green);
+		setBulletColor(Color.blue);
 
 		// Prepare gun
 		trackName = null; // Initialize to not tracking anyone
@@ -85,7 +82,7 @@ public class Bilbo extends Robot {
 		// Our target is close.
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 		turnGunRight(gunTurnAmt);
-		fire(1);
+		fire(2);
 
 		// Our target is too close!  Back up.
 		if (e.getDistance() < 100) {
@@ -113,17 +110,7 @@ public class Bilbo extends Robot {
 		// An AdvancedRobot might use setBack(); execute();
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 		turnGunRight(gunTurnAmt);
-		fire(1);
+		fire(2);
 		back(50);
-	}
-
-	/**
-	 * onWin:  Do a victory dance
-	 */
-	public void onWin(WinEvent e) {
-		for (int i = 0; i < 50; i++) {
-			turnRight(30);
-			turnLeft(30);
-		}
 	}
 }
