@@ -16,9 +16,6 @@ public class Bilbo extends Robot {
 	double gunTurnAmt; // How much to turn our gun when searching
 	String trackName; // Name of the robot we're currently tracking
 
-	/**
-	 * run:  Tracker's main run function
-	 */
 	public void run() {
 		// Set colors
 		setBodyColor(Color.red);
