@@ -16,6 +16,9 @@ public class Bilbo extends Robot {
 	double gunTurnAmt; // How much to turn our gun when searching
 	String trackName; // Name of the robot we're currently tracking
 
+	/**
+	 * run:  Tracker's main run function
+	 */
 	public void run() {
 		// Set colors
 		setBodyColor(Color.red);
@@ -27,7 +30,7 @@ public class Bilbo extends Robot {
 		// Prepare gun
 		trackName = null; // Initialize to not tracking anyone
 		setAdjustGunForRobotTurn(true); // Keep the gun still when we turn
-		gunTurnAmt = 10; // Initialize gunTurn to 10
+		gunTurnAmt = 20; // Initialize gunTurn to 10
 
 		// Loop forever
 		while (true) {
@@ -37,11 +40,11 @@ public class Bilbo extends Robot {
 			count++;
 			// If we've haven't seen our target for 2 turns, look left
 			if (count > 2) {
-				gunTurnAmt = -10;
+				gunTurnAmt = -20;
 			}
 			// If we still haven't seen our target for 5 turns, look right
 			if (count > 5) {
-				gunTurnAmt = 10;
+				gunTurnAmt = 20;
 			}
 			// If we *still* haven't seen our target after 10 turns, find another target
 			if (count > 11) {
@@ -82,7 +85,7 @@ public class Bilbo extends Robot {
 		// Our target is close.
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 		turnGunRight(gunTurnAmt);
-		fire(2);
+		fire(3);
 
 		// Our target is too close!  Back up.
 		if (e.getDistance() < 100) {
@@ -110,7 +113,7 @@ public class Bilbo extends Robot {
 		// An AdvancedRobot might use setBack(); execute();
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
 		turnGunRight(gunTurnAmt);
-		fire(2);
+		fire(3);
 		back(50);
 	}
 }
